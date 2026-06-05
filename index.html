@@ -25,6 +25,8 @@
             color: #b89441;
             margin-bottom: 10px;
         }
+        
+        
 
         /* Barra de búsqueda */
         .buscador {
@@ -85,6 +87,115 @@
             margin-top: 15px;
             padding-left: 20px;
         }
+        /* BOTÓN REGISTRAR - Arriba a la derecha */
+        .btn-registrar {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: #b89441;
+            color: #0b111e;
+            border: none;
+            padding: 8px 15px;
+            font-weight: bold;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+        
+        
+        /* ESTILOS GENERALES DE FORMULARIOS */
+        .formulario-skyrim {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            text-align: left;
+        }
+
+        .formulario-skyrim label {
+            font-weight: bold;
+            color: #8a99ad;
+            font-size: 0.9rem;
+        }
+
+        .formulario-skyrim input, 
+        .formulario-skyrim select, 
+        .formulario-skyrim textarea {
+            width: 100%;
+            padding: 8px;
+            box-sizing: border-box;
+            background-color: #0b111e;
+            border: 1px solid #3a4d67;
+            color: #f5f6f8;
+            border-radius: 4px;
+        }
+
+        .formulario-skyrim input:focus, 
+        .formulario-skyrim select:focus, 
+        .formulario-skyrim textarea:focus {
+            outline: 1px solid #b89441;
+        }
+
+        .grupo-opciones {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .grupo-opciones label {
+            font-weight: normal;
+            color: #f5f6f8;
+        }
+
+        .formulario-skyrim input[type="radio"], 
+        .formulario-skyrim input[type="checkbox"] {
+            width: auto;
+            margin-right: 5px;
+        }
+
+        .btn-enviar {
+            background: #b89441;
+            color: #0b111e;
+            padding: 10px;
+            border: none;
+            font-weight: bold;
+            cursor: pointer;
+            border-radius: 4px;
+            margin-top: 5px;
+        }
+        
+         /* VENTANA EMERGENTE (DIALOG) */
+        dialog {
+            background-color: #162235;
+            color: #f5f6f8;
+            border: 2px solid #b89441;
+            border-radius: 8px;
+            padding: 25px;
+            max-width: 450px;
+            width: 90%;
+        }
+
+        dialog::backdrop {
+            background-color: rgba(0, 0, 0, 0.7);
+        }
+
+        .header-dialog {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .header-dialog h2 {
+            margin: 0;
+            color: #b89441;
+        }
+
+        .btn-cerrar {
+            background: none;
+            border: none;
+            color: #8a99ad;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
 
         footer {
             text-align: center;
@@ -96,10 +207,120 @@
 </head>
 <body>
 
-    <header>
+       <header>
         <h1>Dovah Store</h1>
         <input type="text" class="buscador" placeholder="Buscar en la tienda...">
+        <button class="btn-registrar" onclick="document.getElementById('modal-registro').showModal()">Registrar</button>
     </header>
+
+    <dialog id="modal-registro">
+        <div class="header-dialog">
+            <h2>Crear Cuenta</h2>
+            <button class="btn-cerrar" onclick="document.getElementById('modal-registro').close()">×</button>
+        </div>
+        
+        <form class="formulario-skyrim" method="dialog">
+            <div>
+                <label for="reg-nombre">Nombre completo:</label>
+                <input type="text" id="reg-nombre" autocomplete="name" placeholder="Ej: Ulfric Stormcloak" required>
+            </div>
+
+            <div>
+                <label for="reg-email">Correo electrónico:</label>
+                <input type="email" id="reg-email" autocomplete="email" placeholder="ejemplo@skyrim.com" required>
+            </div>
+
+            <div>
+                <label for="reg-password">Contraseña segura:</label>
+                <input type="password" id="reg-password" autocomplete="new-password" minlength="8" placeholder="Mínimo 8 caracteres" required>
+            </div>
+
+            <div>
+                <label for="reg-edad">Edad:</label>
+                <input type="number" id="reg-edad" min="18" max="120" placeholder="Mínimo 18 años" required>
+            </div>
+
+            <div>
+                <label for="reg-nacimiento">Fecha de nacimiento:</label>
+                <input type="date" id="reg-nacimiento" required>
+            </div>
+
+            <div>
+                <label for="reg-user">Nombre de usuario (5 a 24 caracteres):</label>
+                <input type="text" id="reg-user" pattern="[a-zA-Z0-9]{5,24}" placeholder="Ej: xXDragonBorn09Xx" required>
+            </div>
+
+            <div>
+                <label for="reg-pais">País:</label>
+                <select id="reg-pais" required>
+                    <option value="" disabled selected>Selecciona tu provincia...</option>
+                    <option value="skyrim">Skyrim</option>
+                    <option value="cyrodiil">Cyrodiil</option>
+                    <option value="morrowind">Morrowind</option>
+                    <option value="elsweyr">Elsweyr</option>
+                    <option value="higrock">High Rock</option>
+                    <option value="hammerfell">Hammerfell</option>
+                </select>
+            </div>
+
+            <div>
+                <label for="reg-ciudad">Ciudad de residencia de Skyrim:</label>
+                <input type="text" id="reg-ciudad" list="ciudades" placeholder="eligue">
+                <datalist id="ciudades">
+                    <option value="Whiterun">
+                    <option value="Solitude">
+                    <option value="Windhelm">
+                    <option value="Riften">
+                    <option value="Markarth">
+                    <option value="Dawnstar">
+                    <option value="Falkreath">
+                </datalist>
+            </div>
+
+            <div>
+                <label>Raza:</label>
+                <div class="grupo-opciones">
+                    <input type="radio" id="raz-n" name="raza" value="Nord">
+                    <label for="gen-m">Nord</label>
+                    <input type="radio" id="gen-k" name="raza" value="khajiit">
+                    <label for="gen-f">Khajiit</label>
+                    <input type="radio" id="raz-a" name="raza" value="argonian">
+                    <label for="gen-o">Argonian</label>
+                    <input type="radio" id="raz-e" name="raza" value="elf">
+                    <label for="gen-o">Elf</label>
+                </div>
+            </div>
+                        <div>
+                <label>Género:</label>
+                <div class="grupo-opciones">
+                    <input type="radio" id="gen-m" name="genero" value="masculino">
+                    <label for="gen-m">Masculino</label>
+                    <input type="radio" id="gen-f" name="genero" value="femenino">
+                    <label for="gen-f">Femenino</label>
+                </div>
+            </div>
+
+            <div>
+                <label>Intereses:</label>
+                <div class="grupo-opciones">
+                    <input type="checkbox" id="int-alquimia" value="alquimia">
+                    <label for="int-alquimia">Armas y Armaduras</label>
+                    <input type="checkbox" id="int-armas" value="armas">
+                    <label for="int-armas">Pociones y Vestimenta</label>
+                    <input type="checkbox" id="int-magia" value="magia">
+                    <label for="int-magia">Magia</label>
+                </div>
+            </div>
+
+            <div>
+                <label for="reg-bio">Biografía corta:</label>
+                <textarea id="reg-bio" rows="3" placeholder="Cuéntanos tus aventuras en Helgen..."></textarea>
+            </div>
+
+            <button type="submit" class="btn-enviar">Registrarse</button>
+        </form>
+    </dialog>
+
 
     <main class="contenedor-producto">
         
