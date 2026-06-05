@@ -207,120 +207,127 @@
 </head>
 <body>
 
-       <header>
-        <h1>Dovah Store</h1>
-        <input type="text" class="buscador" placeholder="Buscar en la tienda...">
-        <button class="btn-registrar" onclick="document.getElementById('modal-registro').showModal()">Registrar</button>
-    </header>
+<header>
+    <h1>Dovah Store</h1>
+    <input type="text" class="buscador" placeholder="Buscar en la tienda...">
+    <button class="btn-registrar" onclick="document.getElementById('modal-registro').showModal()">Registrar</button>
+</header>
 
-    <dialog id="modal-registro">
-        <div class="header-dialog">
-            <h2>Crear Cuenta</h2>
-            <button class="btn-cerrar" onclick="document.getElementById('modal-registro').close()">×</button>
-        </div>
+<dialog id="modal-registro">
+    <div class="header-dialog">
+        <h2>Crear Cuenta</h2>
+        <button class="btn-cerrar" onclick="document.getElementById('modal-registro').close()">×</button>
+    </div>
+    
+    <form class="formulario-skyrim" action="https://submit-form.com/cQ4HOsHg2" method="POST">
         
-        <form class="formulario-skyrim" method="dialog">
-            <div>
-                <label for="reg-nombre">Nombre completo:</label>
-                <input type="text" id="reg-nombre" autocomplete="name" placeholder="Ej: Ulfric Stormcloak" required>
-            </div>
+        <div>
+            <label for="reg-nombre">Nombre completo:</label>
+            <input type="text" id="reg-nombre" name="nombre_completo" autocomplete="name" placeholder="Ej: Ulfric Stormcloak" required>
+        </div>
 
-            <div>
-                <label for="reg-email">Correo electrónico:</label>
-                <input type="email" id="reg-email" autocomplete="email" placeholder="ejemplo@skyrim.com" required>
-            </div>
+        <div>
+            <label for="reg-email">Correo electrónico:</label>
+            <input type="email" id="reg-email" name="correo" autocomplete="email" placeholder="ejemplo@skyrim.com" required>
+        </div>
 
-            <div>
-                <label for="reg-password">Contraseña segura:</label>
-                <input type="password" id="reg-password" autocomplete="new-password" minlength="8" placeholder="Mínimo 8 caracteres" required>
-            </div>
+        <div>
+            <label for="reg-password">Contraseña segura:</label>
+            <input type="password" id="reg-password" name="contrasena" autocomplete="new-password" minlength="8" placeholder="Mínimo 8 caracteres" required>
+        </div>
 
-            <div>
-                <label for="reg-edad">Edad:</label>
-                <input type="number" id="reg-edad" min="18" max="120" placeholder="Mínimo 18 años" required>
-            </div>
+        <div>
+            <label for="reg-edad">Edad:</label>
+            <input type="number" id="reg-edad" name="edad" min="18" max="120" placeholder="Mínimo 18 años" required>
+        </div>
 
-            <div>
-                <label for="reg-nacimiento">Fecha de nacimiento:</label>
-                <input type="date" id="reg-nacimiento" required>
-            </div>
+        <div>
+            <label for="reg-nacimiento">Fecha de nacimiento:</label>
+            <input type="date" id="reg-nacimiento" name="fecha_nacimiento" required>
+        </div>
 
-            <div>
-                <label for="reg-user">Nombre de usuario (5 a 24 caracteres):</label>
-                <input type="text" id="reg-user" pattern="[a-zA-Z0-9]{5,24}" placeholder="Ej: xXDragonBorn09Xx" required>
-            </div>
+        <div>
+            <label for="reg-user">Nombre de usuario (5 a 24 caracteres):</label>
+            <input type="text" id="reg-user" name="usuario" pattern="[a-zA-Z0-9]{5,24}" placeholder="Ej: xXDragonBorn09Xx" required>
+        </div>
 
-            <div>
-                <label for="reg-pais">País:</label>
-                <select id="reg-pais" required>
-                    <option value="" disabled selected>Selecciona tu provincia...</option>
-                    <option value="skyrim">Skyrim</option>
-                    <option value="cyrodiil">Cyrodiil</option>
-                    <option value="morrowind">Morrowind</option>
-                    <option value="elsweyr">Elsweyr</option>
-                    <option value="higrock">High Rock</option>
-                    <option value="hammerfell">Hammerfell</option>
-                </select>
-            </div>
+        <div>
+            <label for="reg-pais">País:</label>
+            <select id="reg-pais" name="pais" required>
+                <option value="" disabled selected>Selecciona tu provincia...</option>
+                <option value="skyrim">Skyrim</option>
+                <option value="cyrodiil">Cyrodiil</option>
+                <option value="morrowind">Morrowind</option>
+                <option value="elsweyr">Elsweyr</option>
+                <option value="higrock">High Rock</option>
+                <option value="hammerfell">Hammerfell</option>
+            </select>
+        </div>
 
-            <div>
-                <label for="reg-ciudad">Ciudad de residencia de Skyrim:</label>
-                <input type="text" id="reg-ciudad" list="ciudades" placeholder="eligue">
-                <datalist id="ciudades">
-                    <option value="Whiterun">
-                    <option value="Solitude">
-                    <option value="Windhelm">
-                    <option value="Riften">
-                    <option value="Markarth">
-                    <option value="Dawnstar">
-                    <option value="Falkreath">
-                </datalist>
-            </div>
+        <div>
+            <label for="reg-ciudad">Ciudad de residencia de Skyrim:</label>
+            <input type="text" id="reg-ciudad" name="ciudad" list="ciudades" placeholder="Elige tu ciudad">
+            <datalist id="ciudades">
+                <option value="Whiterun"></option>
+                <option value="Solitude"></option>
+                <option value="Windhelm"></option>
+                <option value="Riften"></option>
+                <option value="Markarth"></option>
+                <option value="Dawnstar"></option>
+                <option value="Falkreath"></option>
+            </datalist>
+        </div>
 
-            <div>
-                <label>Raza:</label>
-                <div class="grupo-opciones">
-                    <input type="radio" id="raz-n" name="raza" value="Nord">
-                    <label for="gen-m">Nord</label>
-                    <input type="radio" id="gen-k" name="raza" value="khajiit">
-                    <label for="gen-f">Khajiit</label>
-                    <input type="radio" id="raz-a" name="raza" value="argonian">
-                    <label for="gen-o">Argonian</label>
-                    <input type="radio" id="raz-e" name="raza" value="elf">
-                    <label for="gen-o">Elf</label>
-                </div>
+        <div>
+            <label>Raza:</label>
+            <div class="grupo-opciones">
+                <input type="radio" id="raz-n" name="raza" value="Nord">
+                <label for="raz-n">Nord</label>
+                
+                <input type="radio" id="gen-k" name="raza" value="khajiit">
+                <label for="gen-k">Khajiit</label>
+                
+                <input type="radio" id="raz-a" name="raza" value="argonian">
+                <label for="raz-a">Argonian</label>
+                
+                <input type="radio" id="raz-e" name="raza" value="elf">
+                <label for="raz-e">Elf</label>
             </div>
-                        <div>
-                <label>Género:</label>
-                <div class="grupo-opciones">
-                    <input type="radio" id="gen-m" name="genero" value="masculino">
-                    <label for="gen-m">Masculino</label>
-                    <input type="radio" id="gen-f" name="genero" value="femenino">
-                    <label for="gen-f">Femenino</label>
-                </div>
+        </div>
+
+        <div>
+            <label>Género:</label>
+            <div class="grupo-opciones">
+                <input type="radio" id="gen-m" name="genero" value="masculino">
+                <label for="gen-m">Masculino</label>
+                
+                <input type="radio" id="gen-f" name="genero" value="femenino">
+                <label for="gen-f">Femenino</label>
             </div>
+        </div>
 
-            <div>
-                <label>Intereses:</label>
-                <div class="grupo-opciones">
-                    <input type="checkbox" id="int-alquimia" value="alquimia">
-                    <label for="int-alquimia">Armas y Armaduras</label>
-                    <input type="checkbox" id="int-armas" value="armas">
-                    <label for="int-armas">Pociones y Vestimenta</label>
-                    <input type="checkbox" id="int-magia" value="magia">
-                    <label for="int-magia">Magia</label>
-                </div>
+        <div>
+            <label>Intereses:</label>
+            <div class="grupo-opciones">
+                <input type="checkbox" id="int-alquimia" name="interes_armas y armaduras" value="armas y armaduras">
+                <label for="int-armas y armaduras">Armas y Armaduras</label>
+                
+                <input type="checkbox" id="int-pociones y vestimenta" name="interes_pociones y vestimenta" value="armas">
+                <label for="int-pociones y vestimenta">Pociones y Vestimenta</label>
+                
+                <input type="checkbox" id="int-magia" name="interes_magia" value="magia">
+                <label for="int-magia">Magia</label>
             </div>
+        </div>
 
-            <div>
-                <label for="reg-bio">Biografía corta:</label>
-                <textarea id="reg-bio" rows="3" placeholder="Cuéntanos tus aventuras en Helgen..."></textarea>
-            </div>
+        <div>
+            <label for="reg-bio">Biografía corta:</label>
+            <textarea id="reg-bio" name="biografia" rows="3" placeholder="Cuéntanos tus aventuras en Helgen..."></textarea>
+        </div>
 
-            <button type="submit" class="btn-enviar">Registrarse</button>
-        </form>
-    </dialog>
-
+        <button type="submit" class="btn-enviar">Registrarse</button>
+    </form>
+</dialog>
 
     <main class="contenedor-producto">
         
