@@ -161,7 +161,14 @@
             border-radius: 4px;
             margin-top: 5px;
         }
-        
+
+               .seccion-soporte {
+    max-width: 500px;         
+    width: 100%;              
+    margin: 40px auto;        
+    padding: 20px;            
+    box-sizing: border-box;   
+}
          /* VENTANA EMERGENTE (DIALOG) */
         dialog {
             background-color: #162235;
@@ -400,6 +407,50 @@
         </ul>
     </details>
 </div>
+
+<section class="seccion-soporte">
+    <width></width>
+    <h2>Soporte Técnico</h2>
+    
+    <form class="formulario-skyrim" id="form-mision2">
+        <div>
+            <label for="sop-nombre">Nombre:</label>
+            <input type="text" id="sop-nombre" name="nombre" placeholder="Tu nombre" required>
+        </div>
+
+        <div>
+            <label for="sop-email">Email:</label>
+            <input type="email" id="sop-email" name="email" placeholder="ejemplo@skyrim.com" required>
+        </div>
+
+        <div>
+            <label for="sop-motivo">Motivo de contacto:</label>
+            <select id="sop-motivo" name="motivo" required>
+                <option value="" disabled selected>Selecciona un motivo...</option>
+                <option value="error-registro">Error en el registro</option>
+                <option value="bug-tienda">Error en la tienda</option>
+                <option value="perdida-items">Pérdida de objetos / oro</option>
+                <option value="otro">Otro motivo</option>
+            </select>
+        </div>
+
+        <div>
+            <label for="sop-mensaje">Mensaje detallado:</label>
+            <textarea id="sop-mensaje" name="mensaje" rows="4" placeholder="Escribe los detalles aquí..." required></textarea>
+        </div>
+
+        <div class="grupo-terminos">
+            <input type="checkbox" id="sop-terminos" name="terminos_aceptados" required>
+            <label for="sop-terminos">Acepto los términos y condiciones</label>
+        </div>
+
+        <div id="mision2-exito" style="display: none; color: #44ff44; text-align: center; margin-bottom: 15px; font-weight: bold;">
+            ¡Formulario de soporte enviado con éxito, viajero!
+        </div>
+
+        <button type="submit" class="btn-enviar">Enviar Mensaje</button>
+    </form>
+</section>
     
     <footer>
         <p>Contacto: soporte@dovahstore.com | Garantía de 1 año contra ataques de dragón</p>
